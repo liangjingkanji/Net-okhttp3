@@ -1,9 +1,9 @@
 package com.drake.net.interceptor
 
 import androidx.annotation.IntRange
+import com.drake.net.compatible.*
 import okhttp3.Interceptor
 import okhttp3.Response
-import okhttp3.internal.closeQuietly
 
 /**
  * 重试次数拦截器

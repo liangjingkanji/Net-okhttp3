@@ -24,6 +24,7 @@ import com.drake.net.convert.NetConverter
 import com.drake.net.interceptor.NetOkHttpInterceptor
 import com.drake.net.interceptor.RequestInterceptor
 import com.drake.net.interfaces.NetErrorHandler
+import com.drake.net.compatible.*
 import com.drake.net.request.label
 import com.drake.net.scope.DialogCoroutineScope
 import com.drake.net.tag.NetLabel

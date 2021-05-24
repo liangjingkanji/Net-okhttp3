@@ -2,6 +2,7 @@ package com.drake.net.interceptor
 
 import android.util.Log
 import com.drake.net.log.LogRecorder
+import com.drake.net.compatible.*
 import com.drake.net.request.isLogRecord
 import com.drake.net.request.label
 import com.drake.net.request.logString

@@ -25,8 +25,7 @@ import com.drake.net.okhttp.toNetOkhttp
 import com.drake.net.tag.NetLabel
 import com.drake.net.utils.runMain
 import okhttp3.*
-import okhttp3.HttpUrl.Companion.toHttpUrl
-import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
+import com.drake.net.compatible.*
 import java.io.File
 import java.io.IOException
 import java.net.URL

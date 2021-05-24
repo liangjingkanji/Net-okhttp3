@@ -15,8 +15,7 @@
  */
 
 package com.drake.net.request
-
-import okhttp3.MediaType.Companion.toMediaType
+import com.drake.net.compatible.*
 
 object MediaConst {
 

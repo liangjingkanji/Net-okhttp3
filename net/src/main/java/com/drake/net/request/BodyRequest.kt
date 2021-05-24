@@ -22,8 +22,7 @@ import com.drake.net.interfaces.ProgressListener
 import com.drake.net.tag.NetLabel
 import com.drake.net.utils.lazyField
 import okhttp3.*
-import okhttp3.RequestBody.Companion.asRequestBody
-import okhttp3.RequestBody.Companion.toRequestBody
+import com.drake.net.compatible.*
 import okio.ByteString
 import org.json.JSONArray
 import org.json.JSONObject

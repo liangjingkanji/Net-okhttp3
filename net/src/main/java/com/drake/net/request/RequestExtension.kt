@@ -25,6 +25,7 @@ import okhttp3.FormBody
 import okhttp3.Request
 import java.util.concurrent.ConcurrentLinkedQueue
 import kotlin.reflect.KType
+import com.drake.net.compatible.*
 
 //<editor-fold desc="请求属性">
 /**

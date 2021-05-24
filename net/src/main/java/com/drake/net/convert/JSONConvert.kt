@@ -26,6 +26,7 @@ import com.drake.net.exception.ServerResponseException
 import okhttp3.Response
 import org.json.JSONObject
 import java.lang.reflect.Type
+import com.drake.net.compatible.*
 
 
 /**

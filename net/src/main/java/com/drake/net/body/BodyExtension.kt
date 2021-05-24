@@ -1,11 +1,11 @@
 package com.drake.net.body
 
+import com.drake.net.compatible.*
 import com.drake.net.request.downloadListeners
 import com.drake.net.request.uploadListeners
 import okhttp3.Request
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
-import okhttp3.ResponseBody.Companion.asResponseBody
 import okio.Buffer
 
 fun RequestBody.toNetRequestBody(request: Request) =

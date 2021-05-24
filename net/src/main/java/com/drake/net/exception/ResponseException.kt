@@ -18,6 +18,7 @@
 
 package com.drake.net.exception
 
+import com.drake.net.compatible.*
 import okhttp3.Response
 
 /**

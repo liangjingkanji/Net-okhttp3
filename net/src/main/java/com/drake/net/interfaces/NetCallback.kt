@@ -1,6 +1,7 @@
 package com.drake.net.interfaces
 
 import com.drake.net.NetConfig
+import com.drake.net.compatible.*
 import com.drake.net.request.converter
 import com.drake.net.utils.runMain
 import okhttp3.Call

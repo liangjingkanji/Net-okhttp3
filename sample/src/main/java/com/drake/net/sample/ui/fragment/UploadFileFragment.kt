@@ -25,9 +25,7 @@ import com.drake.net.interfaces.ProgressListener
 import com.drake.net.sample.R
 import com.drake.net.utils.scopeNetLife
 import kotlinx.android.synthetic.main.fragment_upload_file.*
-import okio.buffer
-import okio.sink
-import okio.source
+import com.drake.net.compatible.*
 import java.io.File
 
 

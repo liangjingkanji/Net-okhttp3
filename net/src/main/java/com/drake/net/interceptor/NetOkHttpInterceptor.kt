@@ -8,6 +8,7 @@ import com.drake.net.exception.NetSocketTimeoutException
 import com.drake.net.exception.NetUnknownHostException
 import com.drake.net.okhttp.attachToNet
 import com.drake.net.okhttp.detachFromNet
+import com.drake.net.compatible.*
 import com.drake.net.request.downloadListeners
 import com.drake.net.request.setLabel
 import com.drake.net.request.uploadListeners

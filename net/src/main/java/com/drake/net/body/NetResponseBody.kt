@@ -18,6 +18,7 @@ package com.drake.net.body
 import android.os.SystemClock
 import com.drake.net.component.Progress
 import com.drake.net.interfaces.ProgressListener
+import com.drake.net.compatible.*
 import okhttp3.MediaType
 import okhttp3.ResponseBody
 import okio.*

@@ -17,6 +17,7 @@
 package com.drake.net.convert
 
 import com.drake.net.exception.ConvertException
+import com.drake.net.compatible.*
 import com.drake.net.response.file
 import okhttp3.Response
 import okio.ByteString

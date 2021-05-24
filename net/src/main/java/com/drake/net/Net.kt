@@ -19,6 +19,7 @@
 package com.drake.net
 
 import com.drake.net.interfaces.ProgressListener
+import com.drake.net.compatible.*
 import com.drake.net.request.*
 import com.drake.net.tag.NetLabel
 import okhttp3.Request

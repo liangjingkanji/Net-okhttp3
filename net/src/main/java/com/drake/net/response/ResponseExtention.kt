@@ -22,8 +22,7 @@ import com.drake.net.request.*
 import com.drake.net.utils.isValid
 import com.drake.net.utils.md5
 import okhttp3.Response
-import okio.buffer
-import okio.sink
+import com.drake.net.compatible.*
 import java.io.File
 import java.net.SocketException
 import java.net.URLDecoder
