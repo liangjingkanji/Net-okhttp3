@@ -27,7 +27,7 @@ Android上不是最强网络任务库, 基于OkHttp且完美支持其所有函�
 
 Net 1.x 版本为RxJava实现 <br>
 [Net 2.x](https://github.com/liangjingkanji/Net/tree/2.x) 版本为协程实现(开发者无需掌握协程也可以使用) <br>
-Net 3.x 版本为OkHttp4.x实现
+Net 3.x 版本为OkHttp实现, 不限定OkHttp版本
 
 <br>
 <p align="center"><strong>欢迎贡献代码/问题</strong></p>
@@ -68,6 +68,8 @@ Net 3.x 版本为OkHttp4.x实现
 
 <br>
 
+如果你不是在 Android 4.4 (API level 19)上开发建议使用最新版本: [Net](https://github.com/liangjingkanji/Net/), 本仓库属于其兼容库
+
 在项目根目录的 build.gradle 添加仓库
 
 ```groovy
@@ -86,16 +88,13 @@ allprojects {
 implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9'
 implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'
 
-// OkHttp(版本可自定)
-implementation "com.squareup.okhttp3:okhttp:4.9.1"
-
-// Net
-implementation 'com.github.liangjingkanji:Net:3.0.4'
+// OkHttp3.12.x(限此版本号以下)
+implementation "com.squareup.okhttp3:okhttp:3.12.0"
+implementation 'com.github.liangjingkanji:Net-okhttp3:3.0.4'
 
 // 支持自动下拉刷新和缺省页的(可选)
 implementation 'com.github.liangjingkanji:BRV:1.3.19'
 ```
-
 <br>
 
 ## Contribute
