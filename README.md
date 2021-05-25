@@ -93,7 +93,7 @@ implementation "com.squareup.okhttp3:okhttp:3.12.0"
 implementation 'com.github.liangjingkanji:Net-okhttp3:3.0.4'
 
 // 支持自动下拉刷新和缺省页的(可选)
-implementation 'com.github.liangjingkanji:BRV:1.3.19'
+implementation 'com.github.liangjingkanji:BRV:1.3.20'
 ```
 <br>
 
