@@ -1,5 +1,10 @@
 package com.drake.net.utils
 
+import android.webkit.MimeTypeMap
+import com.drake.net.compatible.*
+import okhttp3.MediaType
+import okhttp3.RequestBody
+import okio.BufferedSink
 import java.io.File
 import java.io.FileInputStream
 import java.io.IOException
@@ -10,8 +15,7 @@ import java.util.*
 /**
  * 返回文件的MD5值
  */
-fun File?.md5(): String? {
-    this ?: return null
+fun File.md5(): String? {
     try {
         val fileInputStream = FileInputStream(this)
         val digestInputStream = DigestInputStream(fileInputStream, MessageDigest.getInstance("MD5"))
@@ -27,4 +31,28 @@ fun File?.md5(): String? {
         e.printStackTrace()
     }
     return null
+}
+
+/**
+ * 返回文件的MediaType值, 如果不存在返回null
+ */
+fun File.mediaType(): MediaType? {
+    val fileExtension = MimeTypeMap.getFileExtensionFromUrl(absolutePath)
+    return MimeTypeMap.getSingleton().getMimeTypeFromExtension(fileExtension)?.toMediaTypeOrNull()
+}
+
+/**
+ * 创建File的RequestBody
+ * @param contentType 如果为null则通过判断扩展名来生成MediaType
+ */
+fun File.toRequestBody(contentType: MediaType? = null): RequestBody {
+    return object : RequestBody() {
+        override fun contentType() = contentType ?: mediaType()
+
+        override fun contentLength() = length()
+
+        override fun writeTo(sink: BufferedSink) {
+            source().use { source -> sink.writeAll(source) }
+        }
+    }
 }

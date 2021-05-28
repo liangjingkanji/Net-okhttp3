@@ -21,6 +21,7 @@ package com.drake.net.request
 import com.drake.net.interfaces.ProgressListener
 import com.drake.net.tag.NetLabel
 import com.drake.net.utils.lazyField
+import com.drake.net.utils.toRequestBody
 import okhttp3.*
 import com.drake.net.compatible.*
 import okio.ByteString
@@ -64,17 +65,17 @@ open class BodyRequest : BaseRequest() {
     }
 
     fun param(name: String, value: File?) {
-        partBody.addFormDataPart(name, null, value?.asRequestBody() ?: return)
+        partBody.addFormDataPart(name, null, value?.toRequestBody() ?: return)
     }
 
     fun param(name: String, values: List<File?>?) {
         values?.forEach { value ->
-            value?.asRequestBody()?.let { partBody.addFormDataPart(name, null, it) }
+            value?.toRequestBody()?.let { partBody.addFormDataPart(name, null, it) }
         }
     }
 
     fun param(name: String, fileName: String?, value: File?) {
-        partBody.addFormDataPart(name, fileName, value?.asRequestBody() ?: return)
+        partBody.addFormDataPart(name, fileName, value?.toRequestBody() ?: return)
     }
 
     fun param(body: RequestBody, header: Headers? = null) {
