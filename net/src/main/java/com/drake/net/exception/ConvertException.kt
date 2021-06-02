@@ -24,6 +24,6 @@ import com.drake.net.compatible.*
  */
 class ConvertException(
     val response: Response,
-    info: String = "An exception occurred while converting the data",
+    message: String? = null,
     cause: Throwable? = null
-) : NetException(response.request, info, cause)
+) : NetException(response.request, message, cause)

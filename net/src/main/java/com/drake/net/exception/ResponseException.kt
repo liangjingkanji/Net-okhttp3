@@ -26,5 +26,5 @@ import okhttp3.Response
  */
 class ResponseException(
     response: Response,
-    info: String?
-) : NetException(response.request, info)
+    message: String? = null
+) : NetException(response.request, message)
