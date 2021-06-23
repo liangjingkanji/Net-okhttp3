@@ -183,7 +183,7 @@ object Net {
     fun addUploadListener(id: Any, progressListener: ProgressListener) {
         NetConfig.runningCalls.forEach {
             val request = it.get()?.request() ?: return@forEach
-            if (request.id() == id) {
+            if (request.id == id) {
                 request.addUploadListener(progressListener)
             }
         }
@@ -197,7 +197,7 @@ object Net {
     fun removeUploadListener(id: Any, progressListener: ProgressListener) {
         NetConfig.runningCalls.forEach {
             val request = it.get()?.request() ?: return@forEach
-            if (request.id() == id) {
+            if (request.id == id) {
                 request.uploadListeners()?.remove(progressListener)
             }
         }
@@ -211,7 +211,7 @@ object Net {
     fun addDownloadListener(id: Any, progressListener: ProgressListener) {
         NetConfig.runningCalls.forEach {
             val request = it.get()?.request() ?: return@forEach
-            if (request.id() == id) {
+            if (request.id == id) {
                 request.addDownloadListener(progressListener)
             }
         }
@@ -226,7 +226,7 @@ object Net {
     fun removeDownloadListener(id: Any, progressListener: ProgressListener) {
         NetConfig.runningCalls.forEach {
             val request = it.get()?.request() ?: return@forEach
-            if (request.id() == id) {
+            if (request.id == id) {
                 request.downloadListeners()?.remove(progressListener)
             }
         }
@@ -241,7 +241,7 @@ object Net {
     fun requestById(id: Any): Request? {
         NetConfig.runningCalls.forEach {
             val request = it.get()?.request() ?: return@forEach
-            if (request.id() == id) return request
+            if (request.id == id) return request
         }
         return null
     }
@@ -253,7 +253,7 @@ object Net {
         val requests = ArrayList<Request>()
         NetConfig.runningCalls.forEach {
             val request = it?.get()?.request() ?: return@forEach
-            if (request.group() == group) requests.add(request)
+            if (request.group == group) requests.add(request)
         }
         return requests
     }

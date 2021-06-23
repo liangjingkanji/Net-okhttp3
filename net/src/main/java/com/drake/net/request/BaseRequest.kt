@@ -39,7 +39,6 @@ abstract class BaseRequest {
     open var httpUrl: HttpUrl.Builder = HttpUrl.Builder()
     open var converter: NetConverter = NetConfig.converter
     open var method = Method.GET
-    open var tags: NetLabel.TagHashMap = NetLabel.TagHashMap()
 
     //<editor-fold desc="OkHttpClient" >
     open var okHttpRequest: Request.Builder = Request.Builder()
@@ -147,7 +146,7 @@ abstract class BaseRequest {
      * @param tag 标签
      */
     fun setTag(name: String, tag: Any?) {
-        tags[name] = tag
+        okHttpRequest.setTag(name, tag)
     }
 
     /**
@@ -259,10 +258,8 @@ abstract class BaseRequest {
      * 下载监听器
      */
     fun addDownloadListener(progressListener: ProgressListener) {
-        downloadListeners.add(progressListener)
+        okHttpRequest.downloadListeners().add(progressListener)
     }
-
-    protected val downloadListeners = NetLabel.DownloadListeners()
 
     //</editor-fold>
 
@@ -276,9 +273,7 @@ abstract class BaseRequest {
     open fun buildRequest(): Request {
         return okHttpRequest.method(method.name, null)
             .url(httpUrl.build())
-            .setLabel(tags)
             .setConverter(converter)
-            .setLabel(downloadListeners)
             .build()
     }
 
