@@ -10,9 +10,7 @@ import com.drake.net.okhttp.attachToNet
 import com.drake.net.okhttp.detachFromNet
 import com.drake.net.compatible.*
 import com.drake.net.request.downloadListeners
-import com.drake.net.request.setLabel
 import com.drake.net.request.uploadListeners
-import com.drake.net.tag.NetLabel
 import okhttp3.Interceptor
 import okhttp3.Response
 import java.net.ConnectException
@@ -27,10 +25,7 @@ object NetOkHttpInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         var request = chain.request()
         val netRequestBody = request.body?.toNetRequestBody(request.uploadListeners())
-        request = request.newBuilder().method(request.method, netRequestBody).apply {
-            if (request.uploadListeners() == null) setLabel(NetLabel.UploadListeners())
-            if (request.downloadListeners() == null) setLabel(NetLabel.DownloadListeners())
-        }.build()
+        request = request.newBuilder().method(request.method, netRequestBody).build()
         val response = try {
             chain.call().attachToNet()
             chain.proceed(request)
