@@ -67,7 +67,7 @@ Net 3.x 版本为OkHttp实现, 不限定OkHttp版本
 
 ## 安装
 
-如果你不是在 Android 4.4 (API level 19)上开发建议使用最新版本: [Net](https://github.com/liangjingkanji/Net/), 本仓库属于其兼容库
+如果你是在 Android 5 (API level 21) 以上开发建议使用最新版本: [Net](https://github.com/liangjingkanji/Net/), 本仓库属于其兼容库
 
 在项目根目录的 build.gradle 添加仓库
 
