@@ -85,8 +85,8 @@ allprojects {
 
 ```groovy
 // 协程库(版本可自定)
-implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9'
-implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'
+implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3'
+implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3'
 
 // OkHttp3.12.x(限此版本号以下)
 implementation 'com.squareup.okhttp3:okhttp:3.12.0'
