@@ -101,8 +101,8 @@ dependencyResolutionManagement {
 
 ```groovy
 // 协程库(版本可自定)
-implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3'
-implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3'
+implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0'
+implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0'
 
 // OkHttp3.12.x(限此版本号以下)
 implementation 'com.squareup.okhttp3:okhttp:3.12.0'
