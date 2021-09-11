@@ -101,7 +101,6 @@ dependencyResolutionManagement {
 
 ```groovy
 // 协程库(版本可自定)
-implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1'
 implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1'
 
 // OkHttp3.12.x(限此版本号以下)
