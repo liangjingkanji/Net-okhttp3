@@ -22,6 +22,7 @@ import com.drake.net.response.file
 import okhttp3.Response
 import okio.ByteString
 import java.io.File
+import java.lang.reflect.GenericArrayType
 import java.lang.reflect.Type
 
 @Suppress("UNCHECKED_CAST")
@@ -40,7 +41,7 @@ interface NetConverter {
             return when {
                 succeed === String::class.java -> response.body?.string() as R
                 succeed === ByteString::class.java -> response.body?.byteString() as R
-                succeed.toString().contentEquals("byte[]") -> response.body?.bytes() as R
+                succeed is GenericArrayType && succeed.genericComponentType === Byte::class.java -> response.body?.bytes() as R
                 succeed === Response::class.java -> response as R
                 succeed === File::class.java -> response.file() as R
                 else -> throw ConvertException(response, "An exception occurred while converting the NetConverter.DEFAULT")
