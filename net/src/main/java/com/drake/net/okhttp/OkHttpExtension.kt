@@ -141,10 +141,11 @@ fun OkHttpClient.Builder.setRequestInterceptor(interceptor: RequestInterceptor) 
  */
 @Deprecated(
     message = "使用NetErrorHandler统一处理错误",
-    replaceWith = ReplaceWith("setErrorHandler(NetErrorHandler())")
+    replaceWith = ReplaceWith("setErrorHandler(NetErrorHandler())"),
+    DeprecationLevel.ERROR
 )
 fun OkHttpClient.Builder.onError(block: Throwable.() -> Unit) = apply {
-    NetConfig.onError = block
+    // NetConfig.onError = block
 }
 
 /**
@@ -152,10 +153,11 @@ fun OkHttpClient.Builder.onError(block: Throwable.() -> Unit) = apply {
  */
 @Deprecated(
     message = "使用NetErrorHandler统一处理错误",
-    replaceWith = ReplaceWith("setErrorHandler(NetErrorHandler())")
+    replaceWith = ReplaceWith("setErrorHandler(NetErrorHandler())"),
+    DeprecationLevel.ERROR
 )
 fun OkHttpClient.Builder.onStateError(block: Throwable.(view: View) -> Unit) = apply {
-    NetConfig.onStateError = block
+    // NetConfig.onStateError = block
 }
 
 /**
@@ -164,11 +166,12 @@ fun OkHttpClient.Builder.onStateError(block: Throwable.(view: View) -> Unit) = a
  */
 @Deprecated(
     message = "使用NetDialogFactory创建",
-    replaceWith = ReplaceWith("setDialogFactory(NetDialogFactory())")
+    replaceWith = ReplaceWith("setDialogFactory(NetDialogFactory())"),
+    DeprecationLevel.ERROR
 )
 fun OkHttpClient.Builder.onDialog(block: (FragmentActivity) -> Dialog) =
     apply {
-        NetConfig.onDialog = block
+        // NetConfig.onDialog = block
     }
 
 /**
