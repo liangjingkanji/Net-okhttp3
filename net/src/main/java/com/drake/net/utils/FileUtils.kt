@@ -6,6 +6,7 @@ import android.os.Build
 import android.webkit.MimeTypeMap
 import com.drake.net.compatible.*
 import androidx.core.content.FileProvider
+import com.drake.net.Net
 import com.drake.net.NetConfig
 import okhttp3.MediaType
 import okhttp3.RequestBody
@@ -33,7 +34,7 @@ fun File.md5(): String? {
         for (b in md5) stringBuilder.append(String.format("%02X", b))
         return stringBuilder.toString().toLowerCase(Locale.ROOT)
     } catch (e: IOException) {
-        e.printStackTrace()
+        Net.printStackTrace(e)
     }
     return null
 }
