@@ -21,7 +21,9 @@ import com.google.gson.GsonBuilder
 import java.lang.reflect.Type
 
 class GsonConverter : JSONConvert() {
-    private val gson = GsonBuilder().serializeNulls().create()
+    companion object {
+        val gson = GsonBuilder().serializeNulls().create()
+    }
 
     override fun <R> String.parseBody(succeed: Type): R? {
         return gson.fromJson(this, succeed)
