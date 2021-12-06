@@ -113,13 +113,6 @@ implementation 'com.github.liangjingkanji:BRV:1.3.37'
 ```
 <br>
 
-## 混淆规则
-
-```
--keep class okhttp3.** { *; }
-```
-
-
 ## Contribute
 
 <img src="https://tva1.sinaimg.cn/large/006tNbRwgy1gaskr305czj30u00wjtcz.jpg" width="100"/> 
