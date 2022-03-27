@@ -310,6 +310,7 @@ object Net {
     }
     //</editor-fold>
 
+    //<editor-fold desc="日志">
     /**
      * 输出异常日志
      * @see NetConfig.logTag
@@ -343,4 +344,5 @@ object Net {
         pw.flush()
         return sw.toString()
     }
+    //</editor-fold>
 }
