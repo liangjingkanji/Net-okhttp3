@@ -1,8 +1,6 @@
 package com.drake.net.compatible
 
-import okhttp3.FormBody
-import okhttp3.MediaType
-import okhttp3.RequestBody
+import okhttp3.*
 import okio.ByteString
 import java.io.File
 
@@ -23,3 +21,12 @@ fun ByteArray.toRequestBody(
 
 fun File.asRequestBody(contentType: MediaType? = null): RequestBody =
     RequestBody.create(contentType, this)
+
+val MultipartBody.Part.headers: Headers?
+    get() = headers()
+
+val MultipartBody.Part.body: RequestBody
+    get() = body()
+
+val MultipartBody.parts: MutableList<MultipartBody.Part>
+    get() = parts()
