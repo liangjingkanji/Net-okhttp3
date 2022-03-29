@@ -19,8 +19,8 @@ package com.drake.net.okhttp
 import com.drake.net.compatible.dispatcher
 import com.drake.net.compatible.interceptors
 import com.drake.net.interceptor.NetOkHttpInterceptor
-import com.drake.net.request.label
-import com.drake.net.tag.NetLabel
+import com.drake.net.request.tagOf
+import com.drake.net.tag.NetTag
 import okhttp3.OkHttpClient
 
 /**
@@ -41,12 +41,12 @@ fun OkHttpClient.toNetOkhttp() = run {
 fun OkHttpClient.cancelId(id: Any?) {
     id ?: return
     dispatcher.runningCalls().forEach {
-        if (id === it.request().label<NetLabel.RequestId>()?.value) {
+        if (id === it.request().tagOf<NetTag.RequestId>()?.value) {
             it.cancel()
         }
     }
     dispatcher.queuedCalls().forEach {
-        if (id === it.request().label<NetLabel.RequestId>()?.value) {
+        if (id === it.request().tagOf<NetTag.RequestId>()?.value) {
             it.cancel()
         }
     }
@@ -59,12 +59,12 @@ fun OkHttpClient.cancelId(id: Any?) {
 fun OkHttpClient.cancelGroup(group: Any?) {
     group ?: return
     dispatcher.runningCalls().forEach {
-        if (group === it.request().label<NetLabel.RequestGroup>()?.value) {
+        if (group === it.request().tagOf<NetTag.RequestGroup>()?.value) {
             it.cancel()
         }
     }
     dispatcher.queuedCalls().forEach {
-        if (group === it.request().label<NetLabel.RequestGroup>()?.value) {
+        if (group === it.request().tagOf<NetTag.RequestGroup>()?.value) {
             it.cancel()
         }
     }
