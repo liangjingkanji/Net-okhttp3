@@ -1,6 +1,7 @@
 package okhttp3;
 
 import java.lang.reflect.Field;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import kotlin.jvm.JvmStatic;
@@ -24,12 +25,18 @@ public class OkHttpUtils {
     @JvmStatic
     @SuppressWarnings({"unchecked", "ConstantConditions"})
     public static Map<Class<?>, Object> tags(Request request) throws NoSuchFieldException, IllegalAccessException {
-        Field tagsField = request.getClass().getDeclaredField("tags");
+        Map<Class<?>, Object> tagsOkhttp = request.tags;
+        if (tagsOkhttp.isEmpty()) {
+            Field tagsField = request.getClass().getDeclaredField("tags");
+            tagsField.setAccessible(true);
+            LinkedHashMap<Class<?>, Object> tags = new LinkedHashMap<>();
+            tagsField.set(request, tags);
+            return tags;
+        }
+        Field tagsField = tagsOkhttp.getClass().getDeclaredField("m");
         tagsField.setAccessible(true);
-        Map<Class<?>, Object> tags = (Map<Class<?>, Object>) tagsField.get(request);
-        Field mutableTagsField = tags.getClass().getDeclaredField("m");
-        mutableTagsField.setAccessible(true);
-        return (Map<Class<?>, Object>) mutableTagsField.get(tags);
+        Object tags = tagsField.get(tagsOkhttp);
+        return (Map<Class<?>, Object>) tags;
     }
 
     /**
