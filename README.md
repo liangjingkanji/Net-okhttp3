@@ -104,7 +104,7 @@ implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1'
 // OkHttp3.12.x(限此版本号以下)
 implementation 'com.squareup.okhttp3:okhttp:3.12.0'
 // Net
-implementation 'com.github.liangjingkanji:Net-okhttp3:3.2.2'
+implementation 'com.github.liangjingkanji:Net-okhttp3:3.3.0'
 
 // 支持自动下拉刷新和缺省页的(可选)
 implementation 'com.github.liangjingkanji:BRV:1.3.58'
