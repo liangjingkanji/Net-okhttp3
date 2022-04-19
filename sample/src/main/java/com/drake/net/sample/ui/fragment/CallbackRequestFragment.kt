@@ -2,6 +2,7 @@ package com.drake.net.sample.ui.fragment
 
 import com.drake.engine.base.EngineFragment
 import com.drake.net.Net
+import com.drake.net.compatible.body
 import com.drake.net.sample.R
 import com.drake.net.sample.databinding.FragmentCallbackRequestBinding
 import com.drake.net.utils.runMain
