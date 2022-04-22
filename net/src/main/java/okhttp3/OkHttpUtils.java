@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import kotlin.jvm.JvmStatic;
+import okhttp3.internal.cache.DiskLruCache;
 
 public class OkHttpUtils {
 
@@ -47,5 +48,15 @@ public class OkHttpUtils {
         Field field = builder.getClass().getDeclaredField("headers");
         field.setAccessible(true);
         return (Headers.Builder) field.get(builder);
+    }
+
+    @JvmStatic
+    public static Headers.Builder addLenient(Headers.Builder builder, String line) {
+        return builder.addLenient(line);
+    }
+
+    @JvmStatic
+    public static DiskLruCache diskLruCache(Cache cache) {
+        return cache.cache;
     }
 }
