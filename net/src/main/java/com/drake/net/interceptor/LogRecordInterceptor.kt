@@ -1,6 +1,5 @@
 package com.drake.net.interceptor
 
-import android.util.Log
 import com.drake.net.compatible.code
 import com.drake.net.compatible.headers
 import com.drake.net.compatible.method
@@ -59,13 +58,8 @@ open class LogRecordInterceptor(
             )
             return response
         } catch (e: Exception) {
-            LogRecorder.recordException(
-                generateId,
-                System.currentTimeMillis(),
-                -1,
-                null,
-                Log.getStackTraceString(e)
-            )
+            val error = "Review LogCat for details, occurred exception: ${e.javaClass.simpleName}"
+            LogRecorder.recordException(generateId, System.currentTimeMillis(), -1, null, error)
             throw e
         }
     }
