@@ -15,7 +15,6 @@ import okhttp3.CacheControl
 import okhttp3.Call
 import okhttp3.Interceptor
 import okhttp3.Response
-import okhttp3.internal.cache.CacheRequest
 import okhttp3.internal.http.RealResponseBody
 import okio.Buffer
 import okio.Source
@@ -45,17 +44,17 @@ object NetOkHttpInterceptor : Interceptor {
                 when (request.tagOf<CacheMode>()) {
                     CacheMode.READ -> cache.get(request) ?: throw NoCacheException(request)
                     CacheMode.READ_THEN_REQUEST -> cache.get(request) ?: chain.proceed(request).run {
-                        cacheWritingResponse(cache.put(this), this)
+                        cacheWritingResponse(cache, this)
                     }
                     CacheMode.REQUEST_THEN_READ -> try {
                         chain.proceed(request).run {
-                            cacheWritingResponse(cache.put(this), this)
+                            cacheWritingResponse(cache, this)
                         }
                     } catch (e: Exception) {
                         cache.get(request) ?: throw NoCacheException(request)
                     }
                     CacheMode.WRITE -> chain.proceed(request).run {
-                        cacheWritingResponse(cache.put(this), this)
+                        cacheWritingResponse(cache, this)
                     }
                     else -> chain.proceed(request)
                 }
@@ -102,9 +101,10 @@ object NetOkHttpInterceptor : Interceptor {
 
     /** 缓存网络响应 */
     @Throws(IOException::class)
-    private fun cacheWritingResponse(cacheRequest: CacheRequest?, response: Response): Response {
+    private fun cacheWritingResponse(cache: ForceCache, response: Response): Response {
         // Some apps return a null body; for compatibility we treat that like a null cache request.
-        if (cacheRequest == null) return response
+        if (!response.isSuccessful) return response
+        val cacheRequest = cache.put(response) ?: return response
         val cacheBodyUnbuffered = cacheRequest.body()
 
         val source = response.body!!.source()
