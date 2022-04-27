@@ -223,3 +223,8 @@ val TlsVersion.javaName: String
     get() = javaName()
 val Headers.size: Int
     get() = size()
+
+val Cookie.expiresAt get() = expiresAt()
+val Cookie.name get() = name()
+
+val HttpUrl.host get() = host()
