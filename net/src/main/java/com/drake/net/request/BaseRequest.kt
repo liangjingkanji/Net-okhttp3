@@ -32,6 +32,7 @@ import com.drake.net.tag.NetTag
 import okhttp3.*
 import java.io.File
 import java.net.URL
+import java.util.concurrent.TimeUnit
 import kotlin.reflect.typeOf
 
 abstract class BaseRequest {
@@ -294,6 +295,18 @@ abstract class BaseRequest {
      */
     fun setCacheKey(key: String) {
         tagOf(NetTag.CacheKey(key))
+    }
+
+    /**
+     * 强制缓存有效期
+     * 注意即使缓存有效期很长也无法阻止LRU最近最少使用算法清除超出缓存最大限制
+     *
+     * 标准Http缓存协议遵守协议本身的有效期, 当前方法配置无效
+     * @param duration 持续时间
+     * @param unit 时间单位, 默认毫秒
+     */
+    fun setCacheValidTime(duration: Long, unit: TimeUnit = TimeUnit.MILLISECONDS) {
+        tagOf(NetTag.CacheValidTime(unit.toMillis(duration)))
     }
     //</editor-fold>
 
