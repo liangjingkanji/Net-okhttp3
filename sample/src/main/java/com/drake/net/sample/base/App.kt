@@ -19,7 +19,7 @@ package com.drake.net.sample.base
 import androidx.multidex.MultiDexApplication
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
-import com.drake.brv.BindingAdapter
+import com.drake.brv.utils.BRV
 import com.drake.net.NetConfig
 import com.drake.net.cookie.PersistentCookieJar
 import com.drake.net.interceptor.LogRecordInterceptor
@@ -111,7 +111,7 @@ class App : MultiDexApplication() {
             ClassicsFooter(context)
         }
 
-        BindingAdapter.modelId = BR.m
+        BRV.modelId = BR.m
     }
 }
 
