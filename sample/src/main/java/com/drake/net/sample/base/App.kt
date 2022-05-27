@@ -16,7 +16,7 @@
 
 package com.drake.net.sample.base
 
-import android.app.Application
+import androidx.multidex.MultiDexApplication
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.drake.brv.BindingAdapter
@@ -40,7 +40,7 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import okhttp3.Cache
 import java.util.concurrent.TimeUnit
 
-class App : Application() {
+class App : MultiDexApplication() {
 
     override fun onCreate() {
         super.onCreate()
