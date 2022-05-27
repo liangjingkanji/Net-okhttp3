@@ -108,9 +108,9 @@ dependencyResolutionManagement {
 ```groovy
 // 协程库(版本可自定)
 implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1'
-// OkHttp3.12.x(限此版本号以下)
-implementation 'com.squareup.okhttp3:okhttp:3.12.0'
+
 // Net
+// 介于okhttp 3.12.x的更新情况，Net-okhttp3已内置okhttp3:3.12.13，无需再单独引入。
 implementation 'com.github.liangjingkanji:Net-okhttp3:3.4.6'
 
 // 支持自动下拉刷新和缺省页的(可选)
