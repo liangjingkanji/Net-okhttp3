@@ -112,7 +112,7 @@ implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0'
 implementation 'com.github.liangjingkanji:Net-okhttp3:3.4.10'
 
 // 支持自动下拉刷新和缺省页的(可选)
-implementation 'com.github.liangjingkanji:BRV:1.3.76'
+implementation 'com.github.liangjingkanji:BRV:1.3.79'
 ```
 <br>
 
