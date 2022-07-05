@@ -109,7 +109,7 @@ dependencyResolutionManagement {
 implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0" // 协程(版本自定)
 implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0'
 // 介于okhttp 3.12.x的更新情况，Net-okhttp3已内置okhttp3:3.12.13，无需再单独引入。
-implementation 'com.github.liangjingkanji:Net-okhttp3:3.4.10'
+implementation 'com.github.liangjingkanji:Net-okhttp3:3.4.11'
 
 // 支持自动下拉刷新和缺省页的(可选)
 implementation 'com.github.liangjingkanji:BRV:1.3.79'
