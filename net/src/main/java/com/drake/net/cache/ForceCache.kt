@@ -156,7 +156,7 @@ class ForceCache internal constructor(
         return if (value != null && System.currentTimeMillis() - response.receivedResponseAtMillis > value) {
             null
         } else {
-            response
+            response.newBuilder().request(request).build()
         }
     }
 
