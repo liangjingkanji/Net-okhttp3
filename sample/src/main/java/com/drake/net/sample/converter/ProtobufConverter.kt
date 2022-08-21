@@ -2,6 +2,9 @@
 
 package com.drake.net.sample.converter
 
+import com.drake.net.compatible.body
+import com.drake.net.compatible.code
+import com.drake.net.compatible.request
 import com.drake.net.convert.NetConverter
 import com.drake.net.exception.ConvertException
 import com.drake.net.exception.RequestParamsException
