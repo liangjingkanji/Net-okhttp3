@@ -4,6 +4,7 @@ import com.drake.engine.base.EngineFragment
 import com.drake.net.Net
 import com.drake.net.compatible.body
 import com.drake.net.sample.R
+import com.drake.net.sample.constants.Api
 import com.drake.net.sample.databinding.FragmentCallbackRequestBinding
 import com.drake.net.utils.runMain
 import okhttp3.Call
@@ -19,7 +20,7 @@ class CallbackRequestFragment :
 
     override fun initView() {
         // Net同样支持OkHttp原始的队列任务
-        Net.post("banner/json").enqueue(object : Callback {
+        Net.post(Api.BANNER).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
             }
 
