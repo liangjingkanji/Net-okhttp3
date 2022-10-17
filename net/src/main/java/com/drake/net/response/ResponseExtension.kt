@@ -17,6 +17,7 @@
 package com.drake.net.response
 
 import com.drake.net.body.peekString
+import com.drake.net.compatible.*
 import com.drake.net.convert.NetConverter
 import com.drake.net.exception.ConvertException
 import com.drake.net.exception.DownloadFileException
@@ -25,7 +26,6 @@ import com.drake.net.reflect.typeTokenOf
 import com.drake.net.request.*
 import com.drake.net.utils.md5
 import okhttp3.Response
-import com.drake.net.compatible.*
 import java.io.File
 import java.io.IOException
 import java.lang.reflect.Type
@@ -85,8 +85,8 @@ fun Response.file(): File? {
         if (file.exists()) {
             // MD5校验匹配文件
             if (request.downloadMd5Verify()) {
-                val md5Header = request.header("Content-MD5")
-                if (file.md5() == md5Header) return file
+                val md5Header = header("Content-MD5")
+                if (md5Header != null && file.md5(true) == md5Header) return file
             }
             // 命名冲突添加序列数字的后缀
             if (request.downloadConflictRename() && file.name == fileName) {
