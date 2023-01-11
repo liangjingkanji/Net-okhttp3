@@ -10,7 +10,7 @@ import okhttp3.internal.cache.DiskLruCache;
 public class OkHttpUtils {
 
     /**
-     * 标签集合
+     * 获取全部标签
      */
     @JvmStatic
     @SuppressWarnings("unchecked")
@@ -21,27 +21,26 @@ public class OkHttpUtils {
     }
 
     /**
-     * 通过反射返回Request的标签可变集合
+     * 获取Request的标签可变集合
      */
     @JvmStatic
     @SuppressWarnings({"unchecked", "ConstantConditions"})
     public static Map<Class<?>, Object> tags(Request request) throws NoSuchFieldException, IllegalAccessException {
-        Map<Class<?>, Object> tagsOkhttp = request.tags;
-        if (tagsOkhttp.isEmpty()) {
-            Field tagsField = request.getClass().getDeclaredField("tags");
-            tagsField.setAccessible(true);
-            LinkedHashMap<Class<?>, Object> tags = new LinkedHashMap<>();
-            tagsField.set(request, tags);
-            return tags;
-        }
-        Field tagsField = tagsOkhttp.getClass().getDeclaredField("m");
+        Field tagsField = request.getClass().getDeclaredField("tags");
         tagsField.setAccessible(true);
-        Object tags = tagsField.get(tagsOkhttp);
-        return (Map<Class<?>, Object>) tags;
+        Map<Class<?>, Object> tags = (Map<Class<?>, Object>) tagsField.get(request);
+        if (tags.isEmpty()) {
+            LinkedHashMap<Class<?>, Object> newTags = new LinkedHashMap<>();
+            tagsField.set(request, newTags);
+            return newTags;
+        }
+        tagsField = tags.getClass().getDeclaredField("m");
+        tagsField.setAccessible(true);
+        return (Map<Class<?>, Object>) tagsField.get(tags);
     }
 
     /**
-     * 全部的请求头
+     * 获取全部请求头
      */
     @JvmStatic
     public static Headers.Builder headers(Request.Builder builder) throws NoSuchFieldException, IllegalAccessException {
@@ -55,8 +54,13 @@ public class OkHttpUtils {
         return builder.addLenient(line);
     }
 
+    /**
+     * 获取缓存操作对象
+     */
     @JvmStatic
-    public static DiskLruCache diskLruCache(Cache cache) {
-        return cache.cache;
+    public static DiskLruCache diskLruCache(Cache cache) throws NoSuchFieldException, IllegalAccessException {
+        Field field = cache.getClass().getDeclaredField("cache");
+        field.setAccessible(true);
+        return (DiskLruCache) field.get(cache);
     }
 }
