@@ -16,9 +16,9 @@
 package com.drake.net.body
 
 import android.os.SystemClock
+import com.drake.net.compatible.*
 import com.drake.net.component.Progress
 import com.drake.net.interfaces.ProgressListener
-import com.drake.net.compatible.*
 import okhttp3.MediaType
 import okhttp3.ResponseBody
 import okio.*
@@ -26,17 +26,17 @@ import java.io.IOException
 import java.util.concurrent.ConcurrentLinkedQueue
 
 class NetResponseBody(
-    private val responseBody: ResponseBody,
+    private val body: ResponseBody,
     private val progressListeners: ConcurrentLinkedQueue<ProgressListener>? = null,
     private val complete: (() -> Unit)? = null
 ) : ResponseBody() {
 
     private val progress = Progress()
-    private val bufferedSource by lazy { responseBody.source().toProgress().buffer() }
-    private val contentLength by lazy { responseBody.contentLength() }
+    private val bufferedSource by lazy { body.source().toProgress().buffer() }
+    private val contentLength by lazy { body.contentLength() }
 
     override fun contentType(): MediaType? {
-        return responseBody.contentType()
+        return body.contentType()
     }
 
     override fun contentLength(): Long {
@@ -49,18 +49,13 @@ class NetResponseBody(
 
     /**
      * 复制一段指定长度的字符串内容
-     * @param byteCount 复制的字节长度. 如果-1则返回完整的字符串内容
-     * @param discard 如果实际长度大于指定长度则直接返回null. 可以保证数据完整性
+     * @param byteCount 复制的字节长度, 允许超过实际长度, 如果-1则返回完整的字符串内容
      */
-    fun peekString(byteCount: Long = 1024 * 1024 * 4, discard: Boolean = false): String {
-        val peeked = responseBody.source().peek()
-        val buffer = Buffer()
+    fun peekBytes(byteCount: Long = 1024 * 1024 * 4): ByteString {
+        val peeked = body.source().peek()
         peeked.request(byteCount)
-        if (discard && buffer.size > byteCount) return ""
-        val byteCountFinal =
-            if (byteCount < 0) peeked.buffer.size else minOf(byteCount, peeked.buffer.size)
-        buffer.write(peeked, byteCountFinal)
-        return buffer.readUtf8(byteCountFinal)
+        val maxSize = if (byteCount < 0) peeked.buffer.size else minOf(byteCount, peeked.buffer.size)
+        return peeked.readByteString(maxSize)
     }
 
     private fun Source.toProgress() = object : ForwardingSource(this) {
