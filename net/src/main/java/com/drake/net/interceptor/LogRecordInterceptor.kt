@@ -27,7 +27,7 @@ import okhttp3.Response
  * @property requestByteCount 请求日志输出字节数, -1 则为全部
  * @property responseByteCount 响应日志输出字节数, -1 则为全部
  */
-open class LogRecordInterceptor(
+open class LogRecordInterceptor @JvmOverloads constructor(
     var enabled: Boolean,
     var requestByteCount: Long = 1024 * 1024,
     var responseByteCount: Long = 1024 * 1024 * 4
