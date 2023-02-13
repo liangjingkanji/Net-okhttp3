@@ -34,6 +34,8 @@ object Net {
      * @param tag 可以传递对象给Request请求, 一般用于在拦截器/转换器中进行针对某个接口行为判断
      * @param block 函数中可以配置请求参数
      */
+    @JvmOverloads
+    @JvmStatic
     fun get(
         path: String,
         tag: Any? = null,
@@ -52,6 +54,8 @@ object Net {
      * @param tag 可以传递对象给Request请求, 一般用于在拦截器/转换器中进行针对某个接口行为判断
      * @param block 函数中可以配置请求参数
      */
+    @JvmOverloads
+    @JvmStatic
     fun post(
         path: String,
         tag: Any? = null,
@@ -70,6 +74,8 @@ object Net {
      * @param tag 可以传递对象给Request请求, 一般用于在拦截器/转换器中进行针对某个接口行为判断
      * @param block 函数中可以配置请求参数
      */
+    @JvmOverloads
+    @JvmStatic
     fun head(
         path: String,
         tag: Any? = null,
@@ -88,6 +94,8 @@ object Net {
      * @param tag 可以传递对象给Request请求, 一般用于在拦截器/转换器中进行针对某个接口行为判断
      * @param block 函数中可以配置请求参数
      */
+    @JvmOverloads
+    @JvmStatic
     fun options(
         path: String,
         tag: Any? = null,
@@ -106,6 +114,8 @@ object Net {
      * @param tag 可以传递对象给Request请求, 一般用于在拦截器/转换器中进行针对某个接口行为判断
      * @param block 函数中可以配置请求参数
      */
+    @JvmOverloads
+    @JvmStatic
     fun trace(
         path: String,
         tag: Any? = null,
@@ -124,6 +134,8 @@ object Net {
      * @param tag 可以传递对象给Request请求, 一般用于在拦截器/转换器中进行针对某个接口行为判断
      * @param block 函数中可以配置请求参数
      */
+    @JvmOverloads
+    @JvmStatic
     fun delete(
         path: String,
         tag: Any? = null,
@@ -142,6 +154,8 @@ object Net {
      * @param tag 可以传递对象给Request请求, 一般用于在拦截器/转换器中进行针对某个接口行为判断
      * @param block 函数中可以配置请求参数
      */
+    @JvmOverloads
+    @JvmStatic
     fun put(
         path: String,
         tag: Any? = null,
@@ -160,6 +174,8 @@ object Net {
      * @param tag 可以传递对象给Request请求, 一般用于在拦截器/转换器中进行针对某个接口行为判断
      * @param block 函数中可以配置请求参数
      */
+    @JvmOverloads
+    @JvmStatic
     fun patch(
         path: String,
         tag: Any? = null,
@@ -176,6 +192,7 @@ object Net {
     /**
      * 取消全部网络请求
      */
+    @JvmStatic
     fun cancelAll() {
         NetConfig.runningCalls.forEach { it.get()?.cancel() }
         NetConfig.runningCalls.clear()
@@ -186,6 +203,7 @@ object Net {
      * 取消指定的网络请求, Id理论上是唯一的, 所以该函数一次只能取消一个请求
      * @return 如果成功取消返回true
      */
+    @JvmStatic
     fun cancelId(id: Any?): Boolean {
         if (id == null) return false
         val iterator = NetConfig.runningCalls.iterator()
@@ -204,6 +222,7 @@ object Net {
      * 根据分组取消网络请求
      * @return 如果成功取消返回true, 无论取消个数
      */
+    @JvmStatic
     fun cancelGroup(group: Any?): Boolean {
         if (group == null) return false
         val iterator = NetConfig.runningCalls.iterator()
@@ -227,6 +246,7 @@ object Net {
      * @param id 请求的Id
      * @see com.drake.net.request.BaseRequest.setId
      */
+    @JvmStatic
     fun addUploadListener(id: Any, progressListener: ProgressListener) {
         NetConfig.runningCalls.forEach {
             val request = it.get()?.request() ?: return@forEach
@@ -241,6 +261,7 @@ object Net {
      * @param id 请求的Id
      * @see com.drake.net.request.BaseRequest.setId
      */
+    @JvmStatic
     fun removeUploadListener(id: Any, progressListener: ProgressListener) {
         NetConfig.runningCalls.forEach {
             val request = it.get()?.request() ?: return@forEach
@@ -255,6 +276,7 @@ object Net {
      * @param id 请求的Id
      * @see com.drake.net.request.BaseRequest.setId
      */
+    @JvmStatic
     fun addDownloadListener(id: Any, progressListener: ProgressListener) {
         NetConfig.runningCalls.forEach {
             val request = it.get()?.request() ?: return@forEach
@@ -270,6 +292,7 @@ object Net {
      * @param id 请求的Id
      * @see com.drake.net.request.BaseRequest.setId
      */
+    @JvmStatic
     fun removeDownloadListener(id: Any, progressListener: ProgressListener) {
         NetConfig.runningCalls.forEach {
             val request = it.get()?.request() ?: return@forEach
@@ -296,6 +319,7 @@ object Net {
      * @param message 如果非[Throwable]则会自动追加代码位置(文件:行号)
      * @see NetConfig.debug
      */
+    @JvmStatic
     fun debug(message: Any) {
         if (NetConfig.debug) {
             val adjustMessage = if (message is Throwable) {
