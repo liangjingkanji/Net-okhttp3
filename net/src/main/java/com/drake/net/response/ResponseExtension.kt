@@ -160,6 +160,8 @@ fun Response.file(): File? {
 inline fun <reified R> Response.convert(): R {
     try {
         return request.converter().onConvert<R>(typeTokenOf<R>(), this) as R
+    } catch (e: CancellationException) {
+        throw e
     } catch (e: NetException) {
         throw e
     } catch (e: Throwable) {
@@ -177,6 +179,8 @@ inline fun <reified R> Response.convert(): R {
 fun <R> Response.convert(type: Type): R {
     try {
         return request.converter().onConvert<R>(type, this) as R
+    } catch (e: CancellationException) {
+        throw e
     } catch (e: NetException) {
         throw e
     } catch (e: Throwable) {
