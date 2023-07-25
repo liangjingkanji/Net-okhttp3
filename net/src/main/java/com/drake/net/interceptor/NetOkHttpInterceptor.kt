@@ -63,9 +63,10 @@ object NetOkHttpInterceptor : Interceptor {
             }
         }.method(request.method, reqBody).build()
 
+        var response: Response? = null
         try {
             appendRunningCall(chain)
-            val response = if (cache != null) {
+            response = if (cache != null) {
                 when (cacheMode) {
                     CacheMode.READ -> cache.get(request) ?: throw NoCacheException(request)
                     CacheMode.READ_THEN_REQUEST -> cache.get(request) ?: chain.proceed(request).run {
@@ -92,7 +93,8 @@ object NetOkHttpInterceptor : Interceptor {
             val respBody = response.body?.toNetResponseBody(request.tagOf<NetTag.DownloadListeners>()) {
                 removeRunningCall(chain)
             }
-            return response.newBuilder().body(respBody).build()
+            response = response.newBuilder().body(respBody).build()
+            return response
         } catch (e: SocketTimeoutException) {
             throw NetSocketTimeoutException(request, e.message, e)
         } catch (e: ConnectException) {
@@ -103,6 +105,10 @@ object NetOkHttpInterceptor : Interceptor {
             throw e
         } catch (e: Throwable) {
             throw HttpFailureException(request, cause = e)
+        } finally {
+            if (response?.body == null) {
+                removeRunningCall(chain)
+            }
         }
     }
 
@@ -118,9 +124,13 @@ object NetOkHttpInterceptor : Interceptor {
      */
     private fun removeRunningCall(chain: Interceptor.Chain) {
         val iterator = NetConfig.runningCalls.iterator()
-        val call = chain.call()
         while (iterator.hasNext()) {
-            if (iterator.next().get() == call) {
+            val call = iterator.next().get()
+            if (call == null) {
+                iterator.remove()
+                continue
+            }
+            if (call == chain.call()) {
                 iterator.remove()
                 return
             }
