@@ -83,7 +83,10 @@ Welcome to international translation of this project's documents/notes, thank yo
 
 ## 安装
 
-如果你是在 Android 5 (API level 21) 以上开发建议使用最新版本: [Net](https://github.com/liangjingkanji/Net/), 本仓库属于其兼容库
+如果你是在 Android 5 (API level 21)
+以上开发建议使用最新版本: [Net](https://github.com/liangjingkanji/Net/) <br>
+本仓库属于低版本兼容库, 目前最低至 Android 4.4 (API level 19) <br>
+如果需更低版本支持建议拉取仓库修改`minSdkVersion`后编译成aar使用
 
 添加远程仓库根据创建项目的 Android Studio 版本有所不同
 
@@ -115,7 +118,7 @@ dependencyResolutionManagement {
 implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0" // 协程(版本自定)
 implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0'
 // 介于okhttp 3.12.x的更新情况，Net-okhttp3已内置okhttp3:3.12.13，无需再单独引入。
-implementation 'com.github.liangjingkanji:Net-okhttp3:3.5.9'
+implementation 'com.github.liangjingkanji:Net-okhttp3:3.6.0'
 ```
 <br>
 

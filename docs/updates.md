@@ -1,11 +1,30 @@
+## 3.6.0
+
+- pref: Optimize code
+- feat: contentLength未知的上传对象finish也有效
+- pref: RunningCalls遍历优化
+- pref: 考虑到Uri.toRequestBody读取不到文件或长度
+- refactor: 删除废弃函数
+- refactor: 下载临时文件名后缀改成.downloading
+- refactor: 删除param(RequestBody, Header)
+- refactor: LogRecordInterceptor.kt
+- refactor: 删除有问题的取消请求函数
+- refactor: peekBytes的默认读取大小统一为1MB
+- fix: 修复获取请求对象获取ID/Group错误
+- fix: 全局取消请求时发生ConvertException错误提示
+- fix: #187 上传进度监听finish字段无效
+
 ## 3.5.9
+
 - fix: 修复Java基础类型泛型解析
 
 ## 3.5.8
+
 - fix: 删除权限 ACCESS_NETWORK_STATE, 解决个别机型重复申请问题
 - upgrade: BRV 1.4.0
 
 ## 3.5.7
+
 - fix: #165 泛型擦除
 
 ## 3.5.6
@@ -30,7 +49,6 @@
 - fix: #135 Content-MD5未使用Base64解码
 - feat: 新增 BaseRequest.headers
 
-
 ## 3.5.1
 - feat: 新增param方法参数Uri
 - feat: 新增addQuery方法
@@ -41,7 +59,6 @@
 - refactor: 删除权限REQUEST_INSTALL_PACKAGES(谷歌商店权限要求)
 - refactor: 删除File.install
 - pref: 改为使用AppStartup默认初始化
-
 
 ## 3.4.14
 - fix: Fragment未初始化View执行scopeNetLife导致空指针
@@ -153,7 +170,6 @@
 - setQuery函数支持Number/Boolean类型
 - 新增一个错误提示 HttpFailureException
 
-
 ## 3.0.25
 - 轮询器支持ViewModel取消
 - 修复无法返回ByteArray类型问题
@@ -193,7 +209,6 @@
 - NetCallback网络请求被取消不会回调onError
 - 为NetCallback添加Request对象
 - 删除内部Tooltip依赖
-
 
 ## 3.0.14
 - 修复KType类型问题
@@ -242,7 +257,6 @@
 - 添加`toResult`函数来执行同步请求: [同步请求](sync-request.md)
 - 请求体日志支持JSON/文本类型
 - LogRecordInterceptor暴露`requestString/responseString`实现函数用于继承实现自定义需求
-
 
 ## 3.0.2
 修复多渠道无法安装问题
