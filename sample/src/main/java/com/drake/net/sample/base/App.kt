@@ -76,11 +76,11 @@ class App : MultiDexApplication() {
 
         MockDispatcher.initialize()
 
-        initializeThirdPart()
+        initializeView()
     }
 
     /** 初始化第三方依赖库库 */
-    private fun initializeThirdPart() {
+    private fun initializeView() {
 
         // 全局缺省页配置 [https://github.com/liangjingkanji/StateLayout]
         StateConfig.apply {
